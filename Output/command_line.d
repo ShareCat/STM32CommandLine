@@ -1,0 +1,17 @@
+..\..\output\command_line.o: ..\..\User\SYS\command_line.c
+..\..\output\command_line.o: ..\..\User\SYS\command_line.h
+..\..\output\command_line.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\command_line.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\..\output\command_line.o: ..\..\User\SYS\queue.h
+..\..\output\command_line.o: ..\..\User\SYS\../bsp/bsp_usart.h
+..\..\output\command_line.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\command_line.o: ..\..\Libraries\CMSIS\stm32f10x.h
+..\..\output\command_line.o: ..\..\Libraries\CMSIS\core_cm3.h
+..\..\output\command_line.o: ..\..\Libraries\CMSIS\system_stm32f10x.h
+..\..\output\command_line.o: ..\..\User\stm32f10x_conf.h
+..\..\output\command_line.o: ..\..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\..\output\command_line.o: ..\..\Libraries\CMSIS\stm32f10x.h
+..\..\output\command_line.o: ..\..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\..\output\command_line.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
+..\..\output\command_line.o: ..\..\Libraries\FWlib\inc\misc.h
+..\..\output\command_line.o: ..\..\User\SYS\../app/app_led.h
