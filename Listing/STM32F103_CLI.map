@@ -842,21 +842,21 @@ Image component sizes
 
        228         84          8          0          0       1416   app_led.o
         52          4          0          0          0        506   bsp_led.o
-       468         14          0          0          0       4142   bsp_usart.o
-      1528        562        333          1        199      24449   command_line.o
+       468         14          0          0          0       4146   bsp_usart.o
+      1528        562        333          1        199      24461   command_line.o
          0          0          0          0          0       4504   core_cm3.o
         42          0          0          0          0        977   main.o
-       220         22          0          0          0       1813   misc.o
-       206          0          0          0          0       2295   queue.o
-        36          8        236          0       1024        864   startup_stm32f10x_md.o
+       220         22          0          0          0       1817   misc.o
+       206          0          0          0          0       2299   queue.o
+        36          8        236          0       1024        868   startup_stm32f10x_md.o
        860         38          0          0          0       5657   stm32f10x_gpio.o
         38          0          0          0          0       1396   stm32f10x_it.o
        932         36          0         20          0       8832   stm32f10x_rcc.o
-      1032         22          0          0          0       8384   stm32f10x_usart.o
-       480         38          0         20          0     228507   system_stm32f10x.o
+      1032         22          0          0          0       8388   stm32f10x_usart.o
+       480         38          0         20          0     228511   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      6124        828        612         44       1224     293742   Object Totals
+      6124        828        612         44       1224     293778   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          3          3          1          0   (incl. Padding)
 
@@ -902,8 +902,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7580        898        612         48       1224     293470   Grand Totals
-      7580        898        612         48       1224     293470   ELF Image Totals
+      7580        898        612         48       1224     293506   Grand Totals
+      7580        898        612         48       1224     293506   ELF Image Totals
       7580        898        612         48          0          0   ROM Totals
 
 ==============================================================================
