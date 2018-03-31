@@ -88,7 +88,7 @@ static uint8_t CLI_Clear(void *para, uint8_t len)
 {
     TERMINAL_BACK_BLACK(); /* set terminal background color: black */
     TERMINAL_FONT_GREEN(); /* set terminal display color: green */
-    
+
     /* This prints the clear screen and move cursor to top-left corner control
      * characters for VT100 terminals. This means it will not work on
      * non-VT100 compliant terminals, namely Windows' cmd.exe, but should
@@ -167,7 +167,7 @@ static uint8_t CLI_Reboot(void *para, uint8_t len)
     PRINTF(".");
     Delay(0x8FFFFF);
     PRINTF(".");
-    
+
     SYSTEM_REBOOT();
 
     return True;
@@ -253,7 +253,7 @@ void CLI_Init(uint32_t baud)
     TERMINAL_FONT_GREEN(); /* set terminal display color: green */
     TERMINAL_DISPLAY_CLEAR();
     TERMINAL_RESET_CURSOR();
-    
+
     PRINTF("---------------------------------------------\r\n\r\n");
     TERMINAL_HIGH_LIGHT();
     PRINTF("    CLI version: V0.31                       \r\n\r\n");
@@ -333,13 +333,13 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
                     cmd_match = True;
                     ParaLen = Handle.len - strlen(CLI_Cmd[i].pCmd);   /* para. length */
                     ParaAddr = &Handle.buff[strlen(CLI_Cmd[i].pCmd)]; /* para. address */
-                    
+
                     if (NULL != CLI_Cmd[i].pFun) {
                         /* func. schedule */
                         if (CLI_Cmd[i].pFun(ParaAddr, ParaLen)) {
                             /* func. scheduled successful */
                             PRINTF("\r\n-> OK\r\n");
-                            
+
                             /* ECHO */
                             if (ENABLE == CLI_EchoFlag) {
                                 Handle.buff[Handle.len] = '\0';
