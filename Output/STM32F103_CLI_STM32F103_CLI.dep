@@ -275,7 +275,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_gpio.h)(0x5ABF9147)
 I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5ABF9147)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5ABF9147)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5ABF9147)
-F (..\..\User\BSP\bsp_usart.c)(0x5ABF9148)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\bsp_usart.o --omf_browse ..\..\output\bsp_usart.crf --depend ..\..\output\bsp_usart.d)
+F (..\..\User\BSP\bsp_usart.c)(0x5AC0F4EB)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\bsp_usart.o --omf_browse ..\..\output\bsp_usart.crf --depend ..\..\output\bsp_usart.d)
 I (..\..\User\BSP\bsp_usart.h)(0x5ABF9148)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -290,7 +290,7 @@ I (..\..\Libraries\FWlib\inc\misc.h)(0x5ABF9147)
 I (..\..\User\BSP\../sys/queue.h)(0x5ABF9148)
 I (..\..\User\BSP\../sys/command_line.h)(0x5ABF9148)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-F (..\..\User\SYS\command_line.c)(0x5ABF9225)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\command_line.o --omf_browse ..\..\output\command_line.crf --depend ..\..\output\command_line.d)
+F (..\..\User\SYS\command_line.c)(0x5AC0F4C1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\command_line.o --omf_browse ..\..\output\command_line.crf --depend ..\..\output\command_line.d)
 I (..\..\User\SYS\command_line.h)(0x5ABF9148)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
@@ -325,7 +325,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5ABF9147)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5ABF9147)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5ABF9147)
 I (..\..\User\APP\app_led.h)(0x5ABF9148)
-F (..\..\User\main.c)(0x5ABF9148)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
+F (..\..\User\main.c)(0x5AC0D3C8)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\usart-I C:\Users\Administrator\Desktop\STM32CommandLine\Project\RVMDK\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5ABF9147)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5ABF9146)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)

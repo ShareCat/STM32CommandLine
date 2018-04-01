@@ -280,7 +280,7 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
     uint8_t cmd_match = False;
 
     /*  ---------------------------------------
-        Step1: save the command
+        Step1: save chars from the terminal
         ---------------------------------------
      */
     while(1) {
@@ -289,9 +289,6 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
 
             /* new char coming from the terminal£¬copy to Handle.buff */
             if (True == QueueOut((*rx_buff), Handle.buff[Handle.len])) {
-                /* display char in  terminal */
-                USART_SendData(DEBUG_USARTx, Handle.buff[Handle.len]);
-
                 /* '\b' -->DELETE key from terminal */
                 if (('\b' == Handle.buff[Handle.len]) && (0 < Handle.len)) {
                     /* buffer not empty */
