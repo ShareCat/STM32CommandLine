@@ -3,4 +3,4 @@
 ### 0x01: You can transplant this shell into an embeded system
 ### 0x02: You can also add your own commands, it is helpful for programmers to debug
 ### 0x03: Check this demo(using Xshell for terminal):
-<img src="./Doc/demo.gif" width = "669" height = "635" alt="demo.gif" align=center />
+<img src="./Doc/demo.gif" width = "851" height = "576" alt="demo.gif" align=center />
