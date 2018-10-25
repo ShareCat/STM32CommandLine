@@ -287,7 +287,7 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
 
         if (Handle.len < HANDLE_LEN) { /* check the buffer */
 
-            /* new char coming from the terminal£¬copy to Handle.buff */
+            /* new char coming from the terminalÂ£Â¬copy to Handle.buff */
             if (True == QueueOut((*rx_buff), Handle.buff[Handle.len])) {
                 /* '\b' -->DELETE key from terminal */
                 if (('\b' == Handle.buff[Handle.len]) && (0 < Handle.len)) {
@@ -323,6 +323,7 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
     } else if (1 < Handle.len) { /* check for the length of command */
         /* a command must ending by "\r" */
         if ('\r' == Handle.buff[Handle.len - 1]) {
+            Handle.buff[Handle.len - 1] = '\0';
 
             /* looking for a match */
             for (i = 0; i < sizeof(CLI_Cmd) / sizeof(COMMAND_TYPE); i++) {
