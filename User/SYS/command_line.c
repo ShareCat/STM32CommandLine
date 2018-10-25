@@ -55,10 +55,10 @@ const char CLI_Cmd_Reboot[] =
   */
 const COMMAND_TYPE CLI_Cmd[] = {
     /* cmd            cmd help              init func.      func. */
-    {"help\r",        CLI_Cmd_Help,         NULL,           CLI_Help},
-    {"cls\r",         CLI_Cmd_Clear,        NULL,           CLI_Clear},
+    {"help",          CLI_Cmd_Help,         NULL,           CLI_Help},
+    {"cls",           CLI_Cmd_Clear,        NULL,           CLI_Clear},
     {"echo",          CLI_Cmd_Echo,         NULL,           CLI_Echo},
-    {"reboot\r",      CLI_Cmd_Reboot,       NULL,           CLI_Reboot},
+    {"reboot",        CLI_Cmd_Reboot,       NULL,           CLI_Reboot},
     {"led",           CLI_Cmd_LED,          CLI_LED_Init,   CLI_LED},
 };
 
