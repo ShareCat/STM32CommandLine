@@ -33,7 +33,15 @@
 
 #define CHIP_ID_LEN 12
 
-
+/*
+    TODO:
+    单独使用chip ID加密不是很完美，破解者可以读取2个chip的flash进行对比，就能找到不一样的地方，
+    这个地方正好是加密的密码，如果破解者将这些密码清空（0XFF），相当于就破解成功了。对于这个隐患
+    可以在flash的另一个位置设置一个const变量，初始值也是0xFFFFFFFF，第一次运行时候，赋值为
+    magic number，以后每次上电除了要判断密码正确，还要判断magic number是否正确，这样就能防止上
+    述的隐患，因为每个chip的flash文件对比时候，只知道密码不一样，当把密码清空（0XFF）后上电，也不
+    行，因为这个时候magic number正确，表示不是真正的第一次上电。
+*/
 #define SECURE_NUM          1
 #define SECURE_BOOT_ADDR    0x08000100
 const uint32_t SECURE_BOOT_VAL1 __attribute__((at(SECURE_BOOT_ADDR))) = 0xFFFFFFFF;
