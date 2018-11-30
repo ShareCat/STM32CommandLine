@@ -47,7 +47,7 @@
 #define SECURE_MAGIC_NUM        0x2E534543
 #define SECURE_MAGIC_NUM_ADDR   0x08000300
 
-const uint8_t secure_magic_num __attribute__((at(SECURE_MAGIC_NUM_ADDR))) = 0xFFFFFFFF;
+const uint32_t secure_magic_num __attribute__((at(SECURE_MAGIC_NUM_ADDR))) = 0xFFFFFFFF;
 
 
 #define SECURE_NUM              3
