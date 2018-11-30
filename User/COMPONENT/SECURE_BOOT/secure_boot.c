@@ -33,20 +33,32 @@
 
 #define CHIP_ID_LEN 12
 
+
 /*
     TODO:
-    单独使用chip ID加密不是很完美，破解者可以读取2个chip的flash进行对比，就能找到不一样的地方，
-    这个地方正好是加密的密码，如果破解者将这些密码清空（0XFF），相当于就破解成功了。对于这个隐患
-    可以在flash的另一个位置设置一个const变量，初始值也是0xFFFFFFFF，第一次运行时候，赋值为
-    magic number，以后每次上电除了要判断密码正确，还要判断magic number是否正确，这样就能防止上
-    述的隐患，因为每个chip的flash文件对比时候，只知道密码不一样，当把密码清空（0XFF）后上电，也不
+    单独使用chip ID加密不是很完美，破解者可以读取2个chip的flash进行对比，就能找
+    到不一样的地方，这个地方正好是加密的密码，如果破解者将这些密码清空（0XFF），
+    相当于就破解成功了。对于这个隐患可以在flash的另一个位置设置一个const变量，初
+    始值也是0xFFFFFFFF，第一次运行时候，赋值为magic number，以后每次上电除了要判
+    断密码正确，还要判断magic number是否正确，这样就能防止上述的隐患，因为每个
+    chip的flash文件对比时候，只知道密码不一样，当把密码清空（0XFF）后上电，也不
     行，因为这个时候magic number正确，表示不是真正的第一次上电。
 */
-#define SECURE_NUM          1
-#define SECURE_BOOT_ADDR    0x08000100
-const uint32_t SECURE_BOOT_VAL1 __attribute__((at(SECURE_BOOT_ADDR))) = 0xFFFFFFFF;
-const uint32_t SECURE_BOOT_VAL2 __attribute__((at(SECURE_BOOT_ADDR + 4))) = 0xFFFFFFFF;
-const uint32_t SECURE_BOOT_VAL3 __attribute__((at(SECURE_BOOT_ADDR + 8))) = 0xFFFFFFFF;
+#define SECURE_MAGIC_NUM        0x2E534543
+#define SECURE_MAGIC_NUM_ADDR   0x08000300
+
+const uint8_t secure_magic_num __attribute__((at(SECURE_MAGIC_NUM_ADDR))) = 0xFFFFFFFF;
+
+
+#define SECURE_NUM              3
+#define SECURE_ID_LEN           24
+#define SECURE_ID_ADDR          0x08000400
+
+const uint8_t secure_id[SECURE_ID_LEN] __attribute__((at(SECURE_ID_ADDR))) = {
+0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 
+0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
+};
+
 
 
 /**
@@ -55,17 +67,18 @@ const uint32_t SECURE_BOOT_VAL3 __attribute__((at(SECURE_BOOT_ADDR + 8))) = 0xFF
   * @param  id length
   * @retval null
   */
-void get_chip_id(uint8_t *id, uint8_t len)
+void get_chip_id(uint8_t *id, uint8_t chip_id_len)
 {
+    /* 0X1FFFF7E8 ---> chip ID addr. of STM32F103 */
     uint8_t *addr = (uint8_t *)0X1FFFF7E8;
 
-    memcpy(id, addr, len);
+    memcpy(id, addr, chip_id_len);
 
 #ifdef SECURE_BOOT_DBG
     uint8_t i;
 
     printf("chip_id: ");
-    for (i = 0; i < CHIP_ID_LEN; i++) {
+    for (i = 0; i < chip_id_len; i++) {
         printf("%02x ", id[i]);
     }
     printf("\r\n\r\n");
@@ -133,21 +146,36 @@ static void write_to_flash(uint32_t addr, uint8_t *buff, uint16_t len)
   * @param  len
   * @retval null
   */
-static void get_secure_id(uint8_t *chip_id, uint8_t *secure_id, uint8_t len)
+static void get_secure_id(uint8_t *chip_id, uint8_t chip_id_len, uint8_t *secure_id, uint8_t secure_id_len)
 {
     uint8_t i;
+    uint8_t *addr = secure_id;
 
-    for (i = 0; i < len; i++) {
+    if ((chip_id_len * 2) != secure_id_len) {
+        printf("(chip_id_len * 2) != secure_id_len");
+        return;
+    }
+
+    for (i = 0; i < chip_id_len; i++) {
         if (0 == (i % 2)) {
-            secure_id[i] = chip_id[i] + SECURE_NUM;
+            addr[i] = chip_id[i] / SECURE_NUM;
         } else {
-            secure_id[i] = (~chip_id[i]) - SECURE_NUM;
+            addr[i] = (~chip_id[i]) - SECURE_NUM;
+        }
+    }
+
+    addr += chip_id_len;
+    for (i = 0; i < (secure_id_len - chip_id_len); i++) {
+        if (0 == (i % 2)) {
+            addr[i] = chip_id[i] + SECURE_NUM;
+        } else {
+            addr[i] = (~chip_id[i]) * addr[i - 1];
         }
     }
 
 #ifdef SECURE_BOOT_DBG
     printf("secure_id: ");
-    for (i = 0; i < CHIP_ID_LEN; i++) {
+    for (i = 0; i < secure_id_len; i++) {
         printf("%02x ", secure_id[i]);
     }
     printf("\r\n\r\n");
@@ -163,21 +191,21 @@ static void get_secure_id(uint8_t *chip_id, uint8_t *secure_id, uint8_t len)
 static void first_boot_encrypt(void)
 {
     uint8_t chip_id[CHIP_ID_LEN];
-    uint8_t secure_id[CHIP_ID_LEN];
+    uint8_t secure_id[SECURE_ID_LEN];
 
     get_chip_id(chip_id, CHIP_ID_LEN);
 
-    get_secure_id(chip_id, secure_id, CHIP_ID_LEN);
+    get_secure_id(chip_id, CHIP_ID_LEN, secure_id, SECURE_ID_LEN);
 
-    write_to_flash(SECURE_BOOT_ADDR, secure_id, CHIP_ID_LEN);
+    write_to_flash(SECURE_ID_ADDR, secure_id, SECURE_ID_LEN);
 
 #if 0
     uint8_t i;
-    uint8_t secure_id_temp[CHIP_ID_LEN];
+    uint8_t secure_id_temp[SECURE_ID_LEN];
 
-    memcpy(secure_id_temp, SECURE_BOOT_ADDR, CHIP_ID_LEN);
+    memcpy(secure_id_temp, SECURE_ID_ADDR, SECURE_ID_LEN);
     printf("first_boot_encrypt: ");
-    for (i = 0; i < CHIP_ID_LEN; i++) {
+    for (i = 0; i < SECURE_ID_LEN; i++) {
         printf("%02x ", secure_id_temp[i]);
     }
     printf("\r\n\r\n");
@@ -194,34 +222,34 @@ static uint8_t boot_encrypt_check(void)
 {
     uint8_t secure;
     uint8_t chip_id[CHIP_ID_LEN];
-    uint8_t secure_id[CHIP_ID_LEN];
-    uint8_t secure_id_temp[CHIP_ID_LEN];
+    uint8_t secure_id[SECURE_ID_LEN];
+    uint8_t secure_id_temp[SECURE_ID_LEN];
 
     get_chip_id(chip_id, CHIP_ID_LEN);
 
-    get_secure_id(chip_id, secure_id, CHIP_ID_LEN);
+    get_secure_id(chip_id, CHIP_ID_LEN, secure_id, SECURE_ID_LEN);
 
-    memcpy(secure_id_temp, (uint8_t *)SECURE_BOOT_ADDR, CHIP_ID_LEN);
+    memcpy(secure_id_temp, (uint8_t *)SECURE_ID_ADDR, SECURE_ID_LEN);
 
     /*
         compare the encrypted id
     */
-    if (0 != memcmp(secure_id, secure_id_temp, CHIP_ID_LEN)) {
+    if (0 != memcmp(secure_id, secure_id_temp, SECURE_ID_LEN)) {
         /* not secure */
         secure = SECURE_FALSE;
-        printf("secure boot fail \r\n");
+        //printf("secure boot fail \r\n");
     } else {
         /* secure */
         secure = SECURE_TRUE;
-        printf("secure boot success \r\n");
+        //printf("secure boot success \r\n");
     }
 
 #if 0
     uint8_t i;
 
-    memcpy(secure_id_temp, SECURE_BOOT_ADDR, CHIP_ID_LEN);
+    memcpy(secure_id_temp, SECURE_ID_ADDR, SECURE_ID_LEN);
     printf("boot_encrypt_check: ");
-    for (i = 0; i < CHIP_ID_LEN; i++) {
+    for (i = 0; i < SECURE_ID_LEN; i++) {
         printf("%02x ", secure_id_temp[i]);
     }
     printf("\r\n\r\n");
@@ -238,29 +266,31 @@ static uint8_t boot_encrypt_check(void)
   */
 uint8_t secure_boot_check(void)
 {
-    uint32_t *addr;
+    uint8_t i;
+    uint8_t *addr = (uint8_t *)SECURE_ID_ADDR;
     uint8_t first_boot = True;
     uint8_t secure = SECURE_TRUE;
 
-    addr = (uint32_t *)&SECURE_BOOT_VAL1;
-    if (0xffffffff != *addr) {
-        first_boot = False;
+    for (i = 0; i < SECURE_ID_LEN; i++) {
+        if (0xff != addr[i]) {
+            first_boot = False;
+            break;
+        }
     }
 
-    addr = (uint32_t *)&SECURE_BOOT_VAL2;
-    if (0xffffffff != *addr) {
-        first_boot = False;
-    }
-
-    addr = (uint32_t *)&SECURE_BOOT_VAL3;
-    if (0xffffffff != *addr) {
-        first_boot = False;
-    }
-
-    if(True == first_boot) {
+    if (True == first_boot) {
         first_boot_encrypt();
+
+#ifdef SECURE_BOOT_DBG
+        printf("first_boot_encrypt \r\n");
+#endif
+
     } else {
         secure = boot_encrypt_check();
+
+#ifdef SECURE_BOOT_DBG
+        printf("boot_encrypt_check \r\n");
+#endif
     }
 
     return secure;
