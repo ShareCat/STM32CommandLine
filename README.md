@@ -21,6 +21,7 @@ ___
 ![Xshell_VT_Modes](Doc/Xshell_VT_Modes.png)
 ![Xshell_Advanced](Doc/Xshell_Advanced.png)
 ![Xshell_Appearance](Doc/Xshell_Appearance.png)
+
 ___
 
 ## 2. 介绍（[English](#2-introduction)）
