@@ -14,7 +14,13 @@ ___
 ```
 - **1.2** ：Check this demo(using Xshell for terminal, you can also choose SecureCRT if you like):
 <img src="./Doc/demo.gif" width = "851" height = "576" alt="demo.gif" align=center />
-
+&nbsp;
+- **1.3** ：Here is my configurations of Xshell:
+![Xshell_Appearance](./Doc/Xshell_Terminal.png)
+![Xshell_Keyboard](./Doc/Xshell_Keyboard.png)
+![Xshell_VT_Modes](./Doc/Xshell_VT_Modes.png)
+![Xshell_Advanced](./Doc/Xshell_Advanced.png)
+![Xshell_Appearance](./Doc/Xshell_Appearance.png)
 ___
 
 ## 2. 介绍（[English](#2-introduction)）
