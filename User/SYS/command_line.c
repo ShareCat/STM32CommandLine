@@ -287,7 +287,7 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
 
         if (Handle.len < HANDLE_LEN) { /* check the buffer */
 
-            /* new char coming from the terminal£¬copy to Handle.buff */
+            /* new char coming from the terminal, copy it to Handle.buff */
             if (True == QueueOut((*rx_buff), Handle.buff[Handle.len])) {
                 /* '\b' -->DELETE key from terminal */
                 if (('\b' == Handle.buff[Handle.len]) && (0 < Handle.len)) {
