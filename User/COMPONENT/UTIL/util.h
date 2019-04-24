@@ -16,6 +16,7 @@
                                     | (((uint32_t)(A) & 0x000000ff) << 24))
 
 
+extern void my_str_remove_blank(char *str);
 extern int my_atoi(char *str);
 extern char* my_itoa(int value, char* string, int radix);
 
