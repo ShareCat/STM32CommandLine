@@ -256,7 +256,7 @@ void CLI_Init(uint32_t baud)
 
     PRINTF("---------------------------------------------\r\n\r\n");
     TERMINAL_HIGH_LIGHT();
-    PRINTF("    CLI version: V0.31                       \r\n\r\n");
+    PRINTF("    CLI version: V0.5                        \r\n\r\n");
     PRINTF("    coder:       Cat                         \r\n\r\n");
     PRINTF("    github:      https://github.com/ShareCat \r\n\r\n");
     PRINTF("    Email:       843553493@qq.com            \r\n\r\n");
@@ -289,16 +289,19 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
 
             /* new char coming from the terminal, copy it to Handle.buff */
             if (True == QueueOut((*rx_buff), Handle.buff[Handle.len])) {
-                /* '\b' -->DELETE key from terminal */
-                if (('\b' == Handle.buff[Handle.len]) && (0 < Handle.len)) {
+                /* '\b' -->get DELETE key from keyboard */
+                if ('\b' == Handle.buff[Handle.len]) {
                     /* buffer not empty */
                     if (0 < Handle.len) {
-                        Handle.len -= 1;  /* length -1 */
-                        /* terminal delete a char */
+                        /* delete a char in terminal */
+						TERMINAL_MOVE_LEFT(1);
                         TERMINAL_CLEAR_END();
+                        Handle.len -= 1;  /* length -1 */
                     }
 
                 } else {
+                    /* display char in terminal */
+                    USART_SendData(DEBUG_USARTx, Handle.buff[Handle.len]);
                     Handle.len++;
                 }
 
