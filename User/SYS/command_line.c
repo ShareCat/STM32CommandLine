@@ -294,7 +294,7 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
                     /* buffer not empty */
                     if (0 < Handle.len) {
                         /* delete a char in terminal */
-						TERMINAL_MOVE_LEFT(1);
+                        TERMINAL_MOVE_LEFT(1);
                         TERMINAL_CLEAR_END();
                         Handle.len -= 1;  /* length -1 */
                     }
