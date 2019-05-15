@@ -29,8 +29,6 @@ void DEBUG_USART_RX_IRQHandler(void)
         ucData = USART_ReceiveData(DEBUG_USARTx);
         /* save char */
         QueueIn(CLI_RX_Buff, ucData);
-        /* display char in terminal */
-        USART_SendData(DEBUG_USARTx, ucData);
         //printf("%02x", ucTemp);
     }
 }
