@@ -38,3 +38,7 @@ ___
 - **2.2** : A fifo queue added for faster IRQ handler.
 - **2.3** : You can port this shell into an embeded system, even 51, AVR, PIC, stm8s and so on..
 - **2.4** : You can also add your own commands, it is helpful for programmers to debug, also support **colorful debug fonts**.
+
+## 3. TODO
+- A list of history command support.
+- Command Completion.
