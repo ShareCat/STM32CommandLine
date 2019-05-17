@@ -72,7 +72,9 @@ static uint8_t CLI_Help(void *para, uint8_t len)
 {
     uint8_t i;
     for (i = 0; i < sizeof(CLI_Cmd) / sizeof(COMMAND_TYPE); i++) {
-        PRINTF(CLI_Cmd[i].pHelp);
+        if (NULL != CLI_Cmd[i].pHelp) {
+            PRINTF(CLI_Cmd[i].pHelp);
+        }
     }
 
     return True;
