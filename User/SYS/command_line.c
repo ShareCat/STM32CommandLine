@@ -291,8 +291,8 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
 
             /* new char coming from the terminal, copy it to Handle.buff */
             if (True == QueueOut((*rx_buff), Handle.buff[Handle.len])) {
-                /* '\b' -->get DELETE key from keyboard */
-                if ('\b' == Handle.buff[Handle.len]) {
+                /* KEY_BACKSPACE -->get DELETE key from keyboard */
+                if (KEY_BACKSPACE == Handle.buff[Handle.len]) {
                     /* buffer not empty */
                     if (0 < Handle.len) {
                         /* delete a char in terminal */
@@ -322,12 +322,12 @@ static void CLI_RX_Handle(RX_BUFF_TYPE *rx_buff)
         Step2: handle the commands
         ---------------------------------------
      */
-    if ((1 == Handle.len) && ('\r' == Handle.buff[Handle.len - 1])) {
-        /* '\r' -->ENTER key from terminal */
+    if ((1 == Handle.len) && (KEY_ENTER == Handle.buff[Handle.len - 1])) {
+        /* KEY_ENTER -->ENTER key from terminal */
         Handle.len = 0;
     } else if (1 < Handle.len) { /* check for the length of command */
-        /* a command must ending by "\r" */
-        if ('\r' == Handle.buff[Handle.len - 1]) {
+        /* a command must ending by KEY_ENTER */
+        if (KEY_ENTER == Handle.buff[Handle.len - 1]) {
             Handle.buff[Handle.len - 1] = '\0';
 
             /* looking for a match */
