@@ -6,6 +6,11 @@
 #include "queue.h"
 
 
+
+#define KEY_ENTER           '\r'    /* Enter */
+#define KEY_BACKSPACE       '\b'    /* BackSpace */
+
+
 /**
   * CLI macro
   */
