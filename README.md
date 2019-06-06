@@ -40,5 +40,5 @@ ___
 - **2.4** : You can also add your own commands, it is helpful for programmers to debug, also support **colorful debug fonts**.
 
 ## 3. TODO
-- A list of history command support.
-- Command Completion.
+- [ ] A list of history command support.
+- [x] Command Completion.
