@@ -2,8 +2,8 @@
 
 
 #include "bsp_usart.h"
-#include "../sys/queue.h"
-#include "../sys/command_line.h"
+#include "../sys/sys_queue.h"
+#include "../sys/sys_command_line.h"
 
 
 /**
@@ -28,7 +28,7 @@ void DEBUG_USART_RX_IRQHandler(void)
     if(USART_GetITStatus(DEBUG_USARTx, USART_IT_RXNE) != RESET) {
         ucData = USART_ReceiveData(DEBUG_USARTx);
         /* save char */
-        QueueIn(CLI_RX_Buff, ucData);
+        QUEUE_IN(cli_rx_buff, ucData);
         //printf("%02x", ucTemp);
     }
 }
@@ -57,7 +57,7 @@ static void NVIC_Configuration(void)
  * @param  null
  * @retval null
  */
-void Debug_USART_Init(uint32_t baud)
+void debug_usart_init(uint32_t baud)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;

@@ -100,7 +100,7 @@
 
 void DEBUG_USART_TX_IRQHandler(void);
 void DEBUG_USART_RX_IRQHandler(void);
-void Debug_USART_Init(uint32_t baud);
+void debug_usart_init(uint32_t baud);
 void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch);
 void Usart_SendString( USART_TypeDef * pUSARTx, char *str);
 void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);

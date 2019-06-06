@@ -2,11 +2,10 @@
 
 
 #include <stdio.h>
-#include "../sys/command_line.h"
-#include "../sys/queue.h"
+#include "../sys/sys_command_line.h"
+#include "../sys/sys_queue.h"
 #include "../bsp/bsp_led.h"
 #include "app_led.h"
-
 
 
 /**
@@ -29,7 +28,7 @@ uint8_t CLI_LED_Init(void)
 {
     LED_Init();
 
-    return True;
+    return TRUE;
 }
 
 
@@ -56,12 +55,12 @@ uint8_t CLI_LED(void *para, uint8_t len)
             DBG("led off\r\n");
         } else {
             /* para. wrong */
-            return False;
+            return FALSE;
         }
     }
 
     /* led command ok */
-    return True;
+    return TRUE;
 }
 
 
