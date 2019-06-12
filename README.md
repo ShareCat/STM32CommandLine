@@ -42,5 +42,6 @@ ___
 - **2.5** : History command support.
 
 ## 3. TODO
+- Login Support.
 - Command Completion.
 - Need Your Advise.
