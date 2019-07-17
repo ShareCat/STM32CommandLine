@@ -263,7 +263,7 @@ static uint8_t cli_history_show(uint8_t mode, char** p_history)
     return err;
 }
 
-#endif
+#endif  /* CLI_HISTORY */
 
 
 /**
@@ -279,7 +279,7 @@ void cli_init(uint32_t baud)
 
 #if CLI_HISTORY
     memset((uint8_t *)&history, 0, sizeof(history));
-#endif
+#endif  /* CLI_HISTORY */
 
     USART_INIT(baud);
 
@@ -393,14 +393,14 @@ static void cli_rx_handle(RX_BUFF_TYPE *rx_buff)
                 }
 
                 if ((0 == key) && (i < Handle.len)) {
-#endif
+#endif  /* CLI_HISTORY */
                     /* display char in terminal */
                     for (; i < Handle.len; i++) {
                         USART_SendData(DEBUG_USARTx, Handle.buff[i]);
                     }
 #if CLI_HISTORY
                 }
-#endif
+#endif  /* CLI_HISTORY */
                 break;
             }
 
@@ -438,7 +438,7 @@ static void cli_rx_handle(RX_BUFF_TYPE *rx_buff)
 
 #if CLI_HISTORY
                             cli_history_add((char *)Handle.buff);
-#endif
+#endif  /* CLI_HISTORY */
 
                             /* ECHO */
                             if(ENABLE == cli_echo_flag) {

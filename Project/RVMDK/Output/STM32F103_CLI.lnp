@@ -33,6 +33,6 @@
 ".\output\main.o"
 ".\output\stm32f10x_it.o"
 --library_type=microlib --strict --scatter ".\Output\STM32F103_CLI.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listing\STM32F103_CLI.map" -o .\Output\STM32F103_CLI.axf
