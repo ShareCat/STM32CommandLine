@@ -6,6 +6,10 @@
   * @date:      2018-1-18
   * @brief:     command line
   * @attention:
+  * 
+  *             V0.5: [add] colorful log print API
+  *             V0.6: [add] history command support
+  * 
   ******************************************************************************
   */
 
