@@ -12,7 +12,7 @@ ___
   '-----'               '----------'
    | | |
 ```
-- **1.2** ：Check this demo: (using Xshell for terminal, you can also choose SecureCRT if you like)
+- **1.2** ：Check this demo: (My terminal: Xshell, you can also choose SecureCRT if you like)
 <img src="./Doc/demo.gif" width = "851" height = "576" alt="demo.gif" align=center />
 
 - **1.3** ：Here is my configurations of Xshell:
