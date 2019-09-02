@@ -29,7 +29,7 @@ ___
 - **2.2** ：配合队列处理串口数据，快速响应并退出中断。
 - **2.3** ：可以移植到任意嵌入式系统，甚至51、AVR、PIC、stm8s等。
 - **2.4** ：命令支持后续扩展，**支持多种颜色**的log输出到终端，方便调试。
-- **2.5** ：支持历史命令查询。
+- **2.5** ：支持历史命令查询，历史命令条数可自定义。
 
 ___
 
@@ -39,7 +39,7 @@ ___
 - **2.2** : A fifo queue added for faster IRQ handler.
 - **2.3** : You can port this shell into an embeded system, even 51, AVR, PIC, stm8s and so on..
 - **2.4** : You can also add your own commands, it is helpful for programmers to debug, also support **colorful debug fonts**.
-- **2.5** : History command support.
+- **2.5** : History command support, and modify the amount of history that you want to save.
 
 ## 3. TODO
 - Login Support.
