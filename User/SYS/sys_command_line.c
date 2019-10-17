@@ -322,7 +322,7 @@ void cli_init(uint32_t baud)
 static void cli_rx_handle(RX_BUFF_TYPE *rx_buff)
 {
     static HANDLE_TYPE_S Handle = {.len = 0};
-    uint8_t i = Handle.len;;
+    uint8_t i = Handle.len;
     uint8_t ParaLen;
     uint8_t *ParaAddr;
     uint8_t cmd_match = FALSE;
