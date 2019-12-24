@@ -1,4 +1,6 @@
 #include "./util.h"
+#include <string.h>
+
 
 
 /**
@@ -31,6 +33,58 @@ void my_str_remove_blank(char *str)
         c++;
     }
     *str = '\0';
+}
+
+
+/**
+  * @brief  将一个十六进制字节串转换成ASCII码表示的十六进制字符串
+  * @param  pHex    十六进制数字节串首地址
+  * @retval 整数
+  */
+void my_hex_to_str(unsigned char *pHex, unsigned char *pAscii, int nLen)
+{
+    unsigned char Nibble[2];
+    unsigned int i,j;
+    for (i = 0; i < nLen; i++){
+        Nibble[0] = (pHex[i] & 0xF0) >> 4;
+        Nibble[1] = pHex[i] & 0x0F;
+        for (j = 0; j < 2; j++){
+            if (Nibble[j] < 10){            
+                Nibble[j] += 0x30;
+            }
+            else{
+                if (Nibble[j] < 16)
+                    Nibble[j] = Nibble[j] - 10 + 'A';
+            }
+            *pAscii++ = Nibble[j];
+        }               // for (int j = ...)
+    }           // for (int i = ...)
+}
+
+
+/**
+  * @brief  将十六进制的字符串转换为十六进制数组
+  * @param  str 要转化的字符串
+  * @retval 整数
+  */
+int my_str_to_hex(char *str, unsigned char *out, unsigned int *outlen)
+{
+    char *p = str;
+    char high = 0, low = 0;
+    int tmplen = strlen(p), cnt = 0;
+    tmplen = strlen(p);
+    while(cnt < (tmplen / 2))
+    {
+        high = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+        low = (*(++ p) > '9' && ((*p <= 'F') || (*p <= 'f'))) ? *(p) - 48 - 7 : *(p) - 48;
+        out[cnt] = ((high & 0x0f) << 4 | (low & 0x0f));
+        p ++;
+        cnt ++;
+    }
+    if(tmplen % 2 != 0) out[cnt] = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+    
+    if(outlen != 0) *outlen = tmplen / 2 + tmplen % 2;
+    return tmplen / 2 + tmplen % 2;
 }
 
 
