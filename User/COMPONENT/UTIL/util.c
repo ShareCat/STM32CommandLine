@@ -9,13 +9,13 @@
 void my_str_remove_blank(char *str)
 {
     char *c;//指向字符串的字符处
-	   while (*str != ' ') {
-		      if (*str == '\0') {
-			         //字符串中没有空格,直接返回
-			         return;
-		      }
-		      str++;
-	   }//将blank指针指向第一个空格位置
+    while (*str != ' ') {
+        if (*str == '\0') {
+            //字符串中没有空格,直接返回
+            return;
+        }
+        str++;
+    }//将blank指针指向第一个空格位置
     //让c指针指向出现空格后的第一个字符串
     c = str + 1;
     while (*c == ' ') {
