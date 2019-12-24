@@ -1,38 +1,59 @@
 
 
 #include "./util.h"
+#include <string.h>
+
 
 
 /**
-  * @brief  将字符串中所有的空格字符去掉
-  * @param  str 要转化的字符串
-  * @retval null
+  * @brief  将一个十六进制字节串转换成ASCII码表示的十六进制字符串
+  * @param  pHex    十六进制数字节串首地址
+  * @retval 整数
   */
-void my_str_remove_blank(char *str)
+void my_hex_to_str(unsigned char *pHex, unsigned char *pAscii, int nLen)
 {
-	char *c;//指向字符串的字符处
-	while (*str != ' ') {
-		if (*str == '\0') {
-			//字符串中没有空格,直接返回
-			return;
-		}
-		str++;
-	}//将blank指针指向第一个空格位置
-	//让c指针指向出现空格后的第一个字符串
-	c = str + 1;
-	while (*c == ' ') {
-		c++;
-	}
-	while (*c != '\0') {
-		if (*c != ' ') {
-			//将空格换为后面出现的字符，换过去的字符置为空格
-			*str = *c;
-			*c = ' ';
-			str++;
-		}
-		c++;
-	}
-	*str = '\0';
+    unsigned char Nibble[2];
+    unsigned int i,j;
+    for (i = 0; i < nLen; i++){
+        Nibble[0] = (pHex[i] & 0xF0) >> 4;
+        Nibble[1] = pHex[i] & 0x0F;
+        for (j = 0; j < 2; j++){
+            if (Nibble[j] < 10){            
+                Nibble[j] += 0x30;
+            }
+            else{
+                if (Nibble[j] < 16)
+                    Nibble[j] = Nibble[j] - 10 + 'A';
+            }
+            *pAscii++ = Nibble[j];
+        }               // for (int j = ...)
+    }           // for (int i = ...)
+}
+
+
+/**
+  * @brief  将十六进制的字符串转换为十六进制数组
+  * @param  str 要转化的字符串
+  * @retval 整数
+  */
+int my_str_to_hex(char *str, unsigned char *out, unsigned int *outlen)
+{
+    char *p = str;
+    char high = 0, low = 0;
+    int tmplen = strlen(p), cnt = 0;
+    tmplen = strlen(p);
+    while(cnt < (tmplen / 2))
+    {
+        high = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+        low = (*(++ p) > '9' && ((*p <= 'F') || (*p <= 'f'))) ? *(p) - 48 - 7 : *(p) - 48;
+        out[cnt] = ((high & 0x0f) << 4 | (low & 0x0f));
+        p ++;
+        cnt ++;
+    }
+    if(tmplen % 2 != 0) out[cnt] = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+    
+    if(outlen != 0) *outlen = tmplen / 2 + tmplen % 2;
+    return tmplen / 2 + tmplen % 2;
 }
 
 
