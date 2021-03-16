@@ -9,7 +9,6 @@
   ******************************************************************************
   */
 
-
 #ifndef __DEBUG_H
 #define __DEBUG_H
 
@@ -23,37 +22,82 @@
 
 /* Macro config --------------------------------------------------------------*/
 
-
 #ifdef __DEBUG__
     #define PRINTF(...)         printf(__VA_ARGS__)
     #define SPRINTF(...)        sprintf(__VA_ARGS__)
+
+enum {
+    E_FONT_BLACK,
+    E_FONT_L_RED,
+    E_FONT_RED,
+    E_FONT_GREEN,
+    E_FONT_YELLOW,
+    E_FONT_BLUE,
+    E_FONT_PURPLE,
+    E_FONT_CYAN,
+    E_FONT_WHITE,
+};
+
+    #define PRINTF_COLOR(c, ...)    do {                                    \
+                                        switch (c) {                        \
+                                            case E_FONT_BLACK:              \
+                                            TERMINAL_FONT_BLACK();          \
+                                            break;                          \
+                                            case E_FONT_L_RED:              \
+                                            TERMINAL_FONT_L_RED();          \
+                                            break;                          \
+                                            case E_FONT_RED:                \
+                                            TERMINAL_FONT_RED();            \
+                                            break;                          \
+                                            case E_FONT_GREEN:              \
+                                            TERMINAL_FONT_GREEN();          \
+                                            break;                          \
+                                            case E_FONT_YELLOW:             \
+                                            TERMINAL_FONT_YELLOW();         \
+                                            break;                          \
+                                            case E_FONT_BLUE:               \
+                                            TERMINAL_FONT_BLUE();           \
+                                            break;                          \
+                                            case E_FONT_PURPLE:             \
+                                            TERMINAL_FONT_PURPLE();         \
+                                            break;                          \
+                                            case E_FONT_CYAN:               \
+                                            TERMINAL_FONT_CYAN();           \
+                                            break;                          \
+                                            case E_FONT_WHITE:              \
+                                            TERMINAL_FONT_WHITE();          \
+                                            break;                          \
+                                        }                                   \
+                                        printf(__VA_ARGS__);                \
+                                        TERMINAL_FONT_GREEN();              \
+                                    } while(0)
 #else
     #define PRINTF(...)         ;
     #define SPRINTF(...)        ;
+    #define PRINTF_COLOR(c, ...);
 #endif /* __DEBUG__ */
-
 
 /* 打印调试-------------------------------------------------------------BEGIN */
 
-#define ERR(fmt, args...)        do {                                       \
+#define ERR(fmt, args...)   do {                                            \
                                 TERMINAL_FONT_RED();                        \
                                 PRINTF("[ERR] %s(%d): "fmt,                 \
                                     __FUNCTION__, __LINE__, ##args);        \
                                 TERMINAL_FONT_WHITE();                      \
                             } while(0)
-#define LOG(fmt, args...)        do {                                       \
+#define LOG(fmt, args...)   do {                                            \
                                 TERMINAL_FONT_CYAN();                       \
                                 PRINTF("[LOG] %s(%d): "fmt,                 \
                                     __FUNCTION__, __LINE__, ##args);        \
                                 TERMINAL_FONT_WHITE();                      \
                             } while(0)
-#define DBG(fmt, args...)        do {                                       \
+#define DBG(fmt, args...)   do {                                            \
                                 TERMINAL_FONT_YELLOW();                     \
                                 PRINTF("[DBG] %s(%d): "fmt,                 \
                                     __FUNCTION__, __LINE__, ##args);        \
                                 TERMINAL_FONT_WHITE();                      \
                             } while(0)
-#define DIE(fmt, args...)        do {                                       \
+#define DIE(fmt, args...)   do {                                            \
                                 TERMINAL_FONT_RED();                        \
                                 TERMINAL_HIGH_LIGHT();                      \
                                 PRINTF("[DIE] %s(%d): "fmt,                 \
@@ -65,16 +109,11 @@
 
 /* 打印调试---------------------------------------------------------------END */
 
-
-
-
 /* 控制终端显示---------------------------------------------------------BEGIN */
 
 /*
 参考链接:       http://blog.csdn.net/yangguihao/article/details/47734349
-            http://blog.csdn.net/kevinshq/article/details/8179252
-
-
+                http://blog.csdn.net/kevinshq/article/details/8179252
     @实现终端界面中光标的定位和清屏操作:
         \033[0m     关闭所有属性
         \033[1m     设置高亮度
@@ -95,8 +134,6 @@
         \033[u      恢复光标位置
         \033[?25l   隐藏光标
         \33[?25h    显示光标
-
-
     @背景颜色范围: 40--49                 字颜色: 30--39
      40: BLACK                          30: 黑
      41: RED                            31: 红
