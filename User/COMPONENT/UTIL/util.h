@@ -16,6 +16,7 @@
                                     | (((uint32_t)(A) & 0x000000ff) << 24))
 
 
+extern void my_delete_char(char str[], char target);
 extern void my_str_remove_blank(char *str);
 extern void my_hex_to_str(unsigned char *pHex, unsigned char *pAscii, int nLen);
 extern int my_str_to_hex(char *str, unsigned char *out, unsigned int *outlen);
