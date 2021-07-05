@@ -4,6 +4,24 @@
 
 
 /**
+  * @brief  将字符串中所有的target字符去掉
+  * @param  str 要转化的字符串
+  * @retval null
+  */
+void my_delete_char(char str[], char target)
+{
+    int i, j;
+
+    for(i = j = 0; str[i]!='\0'; i++){
+        if(str[i] != target){
+            str[j++] = str[i];
+        }
+    }
+    str[j] = '\0';
+}
+
+
+/**
   * @brief  将字符串中所有的空格字符去掉
   * @param  str 要转化的字符串
   * @retval null
