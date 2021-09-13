@@ -4,6 +4,26 @@
 
 
 /**
+  * @brief  判断字符串是否是全数字
+  * @param  p_str 要判断的字符串
+  * @retval 1 字符串是全数字
+  */
+int str_is_digit(char *p_str)
+{
+    int rtn = 0;
+
+    if (NULL == p_str) return -1;
+
+    if (strspn(p_str, "0123456789") == strlen(p_str)) {
+        /* 全数字 */
+        rtn = 1;
+    }
+
+    return rtn;
+}
+
+
+/**
   * @brief  将字符串中所有的target字符去掉
   * @param  str 要转化的字符串
   * @retval null
