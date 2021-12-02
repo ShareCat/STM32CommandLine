@@ -27,7 +27,7 @@ ___
 ## 2. 介绍（[English](#2-introduction)）
 - **2.1** ：一个**命令行**运行在stm32上，只需要提供一个串口即可实现。
 - **2.2** ：配合队列处理串口数据，快速响应并退出中断。
-- **2.3** ：可以移植到任意嵌入式系统，甚至51、AVR、PIC、stm8s等。
+- **2.3** ：可以移植到任意嵌入式系统，甚至51、AVR、PIC、stm8s、esp8266、esp32等。
 - **2.4** ：命令支持后续扩展，**支持多种颜色**的log输出到终端，方便调试。
 - **2.5** ：支持历史命令查询，历史命令条数可自定义。
 
@@ -37,7 +37,7 @@ ___
 
 - **2.1** : This project is a shell, a CLI(command line interface) like linux shell, demo project is based on STM32(a serial com port is needed).
 - **2.2** : A fifo queue added for faster IRQ handler.
-- **2.3** : You can port this shell into an embeded system, even 51, AVR, PIC, stm8s and so on..
+- **2.3** : You can port this shell into an embeded system, even 51, AVR, PIC, stm8s, esp8266, esp32 and so on..
 - **2.4** : You can also add your own commands, it is helpful for programmers to debug, also support **colorful debug fonts**.
 - **2.5** : History command support, and modify the amount of history that you want to save.
 
