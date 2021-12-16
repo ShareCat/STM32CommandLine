@@ -24,6 +24,21 @@ int str_is_digit(char *p_str)
 
 
 /**
+  * @brief  比较两个字符串数字大小
+  * @param  char * 要比较的字符串数字
+  * @retval 0相等，大于0表示s比t大，小于0表示s比t小
+  */
+int strcmpnum(char *s, char *t)
+{
+    if (strlen(s) == strlen(t)) {
+        return strcmp(s , t);
+    } else {
+        return strlen(s) - strlen(t);
+    }
+}
+
+
+/**
   * @brief  将字符串中所有的target字符去掉
   * @param  str 要转化的字符串
   * @retval null
