@@ -142,6 +142,45 @@ int my_str_to_hex(char *str, unsigned char *out, unsigned int *outlen)
 
 
 /**
+* 此函数可以将所有小写字母转换为大写字母。
+*/
+void my_str_to_upper(char* str)
+{
+    char* curr = str;
+
+    //若字符串未结束
+    while(*curr != '\0') {
+        //判别是否为字母 isalpha ()
+        //判别是否为小写 islower() 
+        // 以上均为ctype.h提供的函数
+        if(isalpha(*curr) && islower(*curr)) {
+            //修改字母
+            *curr = toupper(*curr);
+        }
+        //移动指针，判别下一个字母
+        curr++;
+    }
+}
+
+
+/**
+* 此函数可以将所有大写字母转换为小写字母。
+*/
+void my_str_to_lower(char* str)
+{
+    char* curr = str;
+
+    while(*curr != '\0') {
+        //isupper() 判断字母是否为大写
+        if(isalpha(*curr)&&isupper(*curr)) {
+            *curr=tolower(*curr);
+        }
+        curr++;
+    }
+}
+
+
+/**
   * @brief  将字符串转化成整数，带符号
   * @param  str 要转化的字符串
   * @retval 整数
