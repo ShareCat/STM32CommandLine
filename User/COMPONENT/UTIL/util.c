@@ -181,6 +181,46 @@ void my_str_to_lower(char* str)
 
 
 /**
+* 此函数可以将所有大写字母转换为小写字母。
+*/
+int my_tolower(int c)
+{
+    if (c >= 'A' && c <= 'Z') {
+        return c + 'a' - 'A';
+    } else {
+        return c;
+    }
+}
+
+
+/**
+  * @brief  将十六进制字符串转化成整数
+  * @param  str 要转化的字符串
+  * @retval 整数
+  */
+int my_htoi(char s[])
+{
+    int i;
+    int n = 0;
+
+    if (s[0] == '0' && (s[1]=='x' || s[1]=='X')) {
+        i = 2;
+    } else {
+        i = 0;
+    }
+
+    for (; (s[i] >= '0' && s[i] <= '9') || (s[i] >= 'a' && s[i] <= 'z') || (s[i] >='A' && s[i] <= 'Z');++i) {
+        if (my_tolower(s[i]) > '9') {
+            n = 16 * n + (10 + my_tolower(s[i]) - 'a');
+        } else {
+            n = 16 * n + (my_tolower(s[i]) - '0');
+        }
+    }
+    return n;
+}
+
+
+/**
   * @brief  将字符串转化成整数，带符号
   * @param  str 要转化的字符串
   * @retval 整数

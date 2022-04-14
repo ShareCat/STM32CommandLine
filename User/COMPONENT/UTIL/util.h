@@ -24,6 +24,7 @@ extern void my_hex_to_str(unsigned char *pHex, unsigned char *pAscii, int nLen);
 extern int my_str_to_hex(char *str, unsigned char *out, unsigned int *outlen);
 extern void my_str_to_upper(char* str);
 extern void my_str_to_lower(char* str);
+extern int my_htoi(char s[]);
 extern int my_atoi(char *str);
 extern char* my_itoa(int value, char* string, int radix);
 
