@@ -181,9 +181,9 @@ void my_str_to_lower(char* str)
 
 
 /**
-* 此函数可以将所有大写字母转换为小写字母。
+* 此函数可以将一个大写字母转换为小写字母。
 */
-int my_tolower(int c)
+char my_tolower(char c)
 {
     if (c >= 'A' && c <= 'Z') {
         return c + 'a' - 'A';
