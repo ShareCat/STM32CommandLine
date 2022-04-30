@@ -2,6 +2,30 @@
 #include <string.h>
 
 
+union endian_node
+{
+    unsigned int m;
+    char c;
+};
+
+int big_little_endian_check(void)
+{
+    union endian_node data;
+    int rtn;
+
+    data.m = 0X12345678;
+    //printf("0x%02x \n", data.c);
+    if (0X78 == data.c) {
+        //printf("Little-Endian \n");
+        rtn = 0;
+    } else if (0X12 == data.c) {
+        //printf("Big-Endian \n");
+        rtn = 1;
+    }
+
+    return rtn;
+}
+
 
 /**
   * @brief  判断字符串是否是全数字
