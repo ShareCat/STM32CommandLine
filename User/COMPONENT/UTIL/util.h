@@ -16,6 +16,12 @@
                                     | (((uint32_t)(A) & 0x000000ff) << 24))
 
 
+typedef enum bool_ {
+    false,
+    true
+} bool;
+
+
 extern int big_little_endian_check(void);
 extern int str_is_digit(char *p_str);
 extern int strcmpnum(char *s, char *t);
